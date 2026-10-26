@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import BrandSlider from '../components/BrandSlider.jsx'
 import gsap from 'gsap'
@@ -170,74 +170,6 @@ export function OurWork() {
           </div>
         </section>
       ))}
-    </div>
-  )
-}
-
-const PERKS = [
-  ['Mental Health Support', 'Our TLC (Tender Loving Culture) ensures your mental health remains as cool as a cucumber.', '0.webp'],
-  ['Learning and Development', "Growth Garden won't just prove to be a career ladder, it is a rocket launch. We promise you'll come out a mad genius.", '1.webp'],
-  ['Unlimited Leaves', "Unexpected sunshine moments? You'll get leaves as endless as your daydreams – because life's too short for just weekends!", '2.webp'],
-  ['Health Insurance', 'No explanations needed, just comprehensive health care benefits because your well-being is our priority.', '3.webp'],
-]
-const TEAM = [
-  ['Neel Gogia', 'Co-Founder', '4.png'],
-  ['Jag Chima', 'Co-Founder', '5.png'],
-  ['Arpan Soni', 'VP - Talent Management', '6.png'],
-  ['Tarun Gandhi', 'Head of Finance', '7.webp'],
-  ['Priyanka Padode Sheth', 'Operations Head', '8.jpg'],
-]
-
-export function Career() {
-  const [active, setActive] = useState(false)
-  useEffect(() => {
-    const t = setTimeout(() => setActive(true), 200)
-    return () => clearTimeout(t)
-  }, [])
-  return (
-    <div className="ca">
-      <section className="ca-rules">
-        <div className={`ca-rules-in ${active ? 'active' : ''}`}>
-          <h3>At Growth Garden, We work differently.</h3>
-          <h2>We make our own rules!</h2>
-        </div>
-      </section>
-
-      {PERKS.map(([title, body, file], i) => (
-        <section key={title} className="ca-econ">
-          <div className="ca-econ-in" style={{ flexDirection: i % 2 ? 'row-reverse' : 'row' }}>
-            <div className="ca-econ-left">
-              <h2>{title}</h2>
-              <p>{body}</p>
-            </div>
-            <div className="ca-econ-right" style={{ flexDirection: i % 2 ? 'row-reverse' : 'row' }}>
-              <span className="ca-num">{i + 1}</span>
-              <div className="ca-econ-img"><img src={`/img/career/${file}`} alt={title} loading="lazy" /></div>
-            </div>
-          </div>
-        </section>
-      ))}
-
-      <section className="ca-team">
-        <div className="ca-team-in">
-          <h3>We are</h3>
-          <h2>Growth Garden’s Dreamweavers!</h2>
-          <div className="ca-team-grid">
-            {TEAM.map(([name, role, file]) => (
-              <div key={name} className="ca-member">
-                <img src={`/img/career/${file}`} alt={name} loading="lazy" />
-                <h4>{name}</h4>
-                <p>{role}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="ca-apply">
-        <h2>Your career deserves a page-turner</h2>
-        <a href="mailto:hr@growthgarden.in" className="ca-apply-btn">Apply Via Email</a>
-      </section>
     </div>
   )
 }

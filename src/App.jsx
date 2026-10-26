@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, Route, Routes, useLocation } from 'react-router-dom'
 import { Contact, CaseStudy, Policy, NotFound } from './pages/Pages.jsx'
-import { OurStory, OurWork, Career } from './pages/Company.jsx'
+import { OurStory, OurWork } from './pages/Company.jsx'
 import { ServicePage, WhatWeDo } from './pages/Services.jsx'
 import Home from './pages/Home.jsx'
 
@@ -10,7 +10,6 @@ const NAV = [
   { label: 'Our-Story', to: '/our-story' },
   { label: 'What we do', to: '/what-we-do' },
   { label: 'Our Work', to: '/our-work' },
-  { label: 'Career', to: '/career' },
 ]
 
 
@@ -39,10 +38,6 @@ function Footer() {
         <p>Explore, Collaborate, Innovate, and Achieve</p>
         <Link to="/contact" className="btn">Let's Collaborate</Link>
         <div className="footer-cols">
-          <div>
-            <h4>Work with us</h4>
-            <p><Link to="/career">Be a part of the team</Link></p>
-          </div>
           <div>
             <h4>New Delhi</h4>
             <p>Metro Station-Saket, 241, Westend Marg, Saidulajab, Butterfly Park, Mittal Garden, Saket, New Delhi, Delhi 110030</p>
@@ -87,7 +82,6 @@ export default function App() {
           <Route path="/what-we-do" element={<WhatWeDo />} />
           <Route path="/services/:slug" element={<ServicePage />} />
           <Route path="/our-work" element={<OurWork />} />
-          <Route path="/career" element={<Career />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/case/:slug" element={<CaseStudy />} />
           <Route path="/posh-policy" element={<Policy kind="posh" />} />

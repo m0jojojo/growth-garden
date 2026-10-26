@@ -293,52 +293,6 @@ body, html { overflow-x: hidden; }
 .ow-head p { font-size: 16px; font-weight: 600; color: rgba(255,255,255,.72); padding-bottom: 25px; }
 .h-work .ow-head p { font-weight: 600; font-size: 16px; }
 
-/* ===== Career ===== */
-.ca { background: #000; }
-.ca-rules { padding: 200px 20px; background: #000; }
-.ca-rules-in { opacity: 0; transform: translateY(-200px); }
-.ca-rules-in.active { opacity: 1; transform: none; transition: all 3s cubic-bezier(.25, 1, .5, 1); }
-.ca-rules-in h3 { text-align: center; font-size: 40px; font-weight: 700; line-height: 62px; }
-.ca-rules-in h2 { text-align: center; font-size: 64px; font-weight: 700; line-height: 76px; color: #FFF1A8; padding-top: 10px; }
-.ca-econ { background: #161616; padding: 10px; font-family: sans-serif; }
-.ca-econ-in { display: flex; justify-content: space-between; padding: 10px; }
-.ca-econ-left { padding: 10px; width: 42%; display: flex; gap: 20px; flex-direction: column; justify-content: flex-end; }
-.ca-econ-left h2 { font-size: 64px; font-weight: 700; color: #FFF1A8; line-height: 83px; }
-.ca-econ-left p { font-size: 24px; font-weight: 600; color: rgba(255,255,255,.88); margin: 0 0 38px; }
-.ca-econ-right { width: 50%; display: flex; align-items: center; padding: 10px; }
-.ca-num { font-size: 290px; font-weight: 700; line-height: 83px; color: #37333b; }
-.ca-econ-img img { width: 100%; border-radius: 25px; }
-.ca-team { background: #111; text-align: center; padding: 36px 0; }
-.ca-team-in { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-.ca-team h3 { font-size: 40px; font-weight: 600; }
-.ca-team h2 { font-size: 64px; font-weight: 700; color: #FFF1A8; margin: 10px 0 40px; }
-.ca-team-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px 2%; }
-.ca-member { width: 23%; }
-.ca-member img { width: 100%; border-radius: 12px; display: block; }
-.ca-member h4 { font-size: 16px; font-weight: 700; text-align: left; padding: 16px 0 0 12px; }
-.ca-member p { font-size: 16px; color: #FFEC8A; font-weight: 500; text-align: left; padding-left: 12px; }
-.ca-apply { background: #111; text-align: center; padding: 36px 20px; }
-.ca-apply h2 { font-size: 32px; font-weight: 700; margin-bottom: 20px; }
-.ca-apply-btn { display: inline-block; padding: 5px 7px; min-width: 160px; border-radius: 20px; background: #FFF1A8; color: #000; font-size: 15px; font-weight: 600; transition: opacity .3s; }
-.ca-apply-btn:hover { opacity: .9; }
-@media (max-width: 768px) {
-  .ca-rules { padding: 100px 15px; }
-  .ca-econ-in { display: block !important; }
-  .ca-econ-left, .ca-econ-right { width: 100%; }
-  .ca-econ-left h2 { font-size: 32px; line-height: 40px; }
-  .ca-econ-left p { font-size: 18px; }
-  .ca-num { font-size: 150px; line-height: 42px; }
-}
-@media (max-width: 749px) {
-  .ca-team h3 { font-size: 22px; }
-  .ca-team h2 { font-size: 32px; margin-bottom: 24px; }
-  .ca-member { width: 48%; }
-  .ca-member h4, .ca-member p { font-size: 14px; text-align: center; padding-left: 0; }
-  .ca-apply h2 { font-size: 26px; }
-}
-
-.logo-text { font-size: 22px; font-weight: 700; letter-spacing: .5px; color: #fff; }
-
 /* ===== Base text, matched to the live theme ===== */
 body { font-size: 15px; line-height: 1.8; letter-spacing: .6px; }
 h1, h2, h3, h4, h5, h6 { line-height: 1.3; }
@@ -370,8 +324,6 @@ h1, h2, h3, h4, h5, h6 { line-height: 1.3; }
   .ow-head { padding: 0 15px; }
   .h-work-in { padding: 30px 50px; }
   .wwd-flex { padding: 0 25px; }
-  .ca-econ-left h2 { line-height: 40px; }
-  .ca-team-in { padding: 0 15px; }
 }
 @media (max-width: 600px) { .h-btn .first { font-size: 16px; } }
 @media (max-width: 480px) {
