@@ -1,10 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Autoplay, Navigation } from 'swiper/modules'
+import BrandSlider from '../components/BrandSlider.jsx'
 import gsap from 'gsap'
-import 'swiper/css'
-import 'swiper/css/navigation'
 import wavePath from '../data/wavePath.js'
 
 const WAVE_TEXT = "We're not your average story; we don't ride the waves, we create them. We're not your average story; we don't ride the waves, we create them."
@@ -157,26 +154,19 @@ export function OurWork() {
             <p>{g.body[0]}<br />{g.body[1]}</p>
           </div>
           <div className="h-work-in">
-            <Swiper
-              modules={[Autoplay, Navigation]}
-              loop={g.items.length > 3}
-              slidesPerView={1}
-              spaceBetween={40}
-              autoplay={{ delay: 3000, disableOnInteraction: false }}
-              navigation
-              breakpoints={{ 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }}
-            >
-              {g.items.map(([name, file, to]) => (
-                <SwiperSlide key={name}>
+            <BrandSlider
+              items={g.items}
+              renderSlide={([name, file, to]) => (
+                <>
                   <div className="h-brand-item">
                     <img src={`/img/ow/${file}`} alt={name} />
                     {to && <Link to={to} className="h-brand-arrow" aria-label={name}>{ARROW}</Link>}
                   </div>
                   <h3>{name}</h3>
                   <hr />
-                </SwiperSlide>
-              ))}
-            </Swiper>
+                </>
+              )}
+            />
           </div>
         </section>
       ))}

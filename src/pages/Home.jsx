@@ -1,9 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Autoplay, Navigation } from 'swiper/modules'
-import 'swiper/css'
-import 'swiper/css/navigation'
+import BrandSlider from '../components/BrandSlider.jsx'
 
 const LINES = ['Crafting the core of', "Creators' Economy."]
 
@@ -47,7 +44,6 @@ function useReveal(threshold = 0.2) {
 function Hero() {
   const [loading, setLoading] = useState(true)
   const [typed, setTyped] = useState(['', ''])
-  const [done, setDone] = useState(false)
 
   useEffect(() => {
     const start = setTimeout(() => setLoading(false), 300)
@@ -60,9 +56,11 @@ function Hero() {
     let ch = 0
     let t
     const tick = () => {
-      if (line >= LINES.length) return setDone(true)
+      if (line >= LINES.length) return
       ch++
-      setTyped((p) => p.map((s, i) => (i === line ? LINES[line].slice(0, ch) : s)))
+      const at = line
+      const text = LINES[line].slice(0, ch)
+      setTyped((p) => p.map((s, i) => (i === at ? text : s)))
       if (ch >= LINES[line].length) { line++; ch = 0 }
       t = setTimeout(tick, 80)
     }
@@ -70,7 +68,7 @@ function Hero() {
     return () => clearTimeout(t)
   }, [loading])
 
-  const cls = done ? 'fixedColor' : 'gradient'
+  const cls = 'gradient'
   return (
     <section className="h-hero">
       {loading && <div className="h-loading" />}
@@ -144,17 +142,10 @@ function WorkSlider() {
   return (
     <section className="h-work">
       <div className="h-work-in">
-        <Swiper
-          modules={[Autoplay, Navigation]}
-          loop
-          slidesPerView={1}
-          spaceBetween={40}
-          autoplay={{ delay: 3000, disableOnInteraction: false }}
-          navigation
-          breakpoints={{ 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }}
-        >
-          {WORK.map((w) => (
-            <SwiperSlide key={w.name}>
+        <BrandSlider
+          items={WORK}
+          renderSlide={(w) => (
+            <>
               <div className="h-brand-item">
                 <img src={`/img/work/${w.img}`} alt={w.name} />
                 {w.to
@@ -164,9 +155,9 @@ function WorkSlider() {
               <h3>{w.name}</h3>
               <p>{w.tag}</p>
               <hr />
-            </SwiperSlide>
-          ))}
-        </Swiper>
+            </>
+          )}
+        />
         <div className="h-viewall"><Link to="/our-work">View All</Link></div>
       </div>
     </section>
