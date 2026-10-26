@@ -8,26 +8,44 @@ function Page({ children }) {
 }
 
 export function Contact() {
-  const [sent, setSent] = useState(false)
-  const submit = (e) => {
+  const [status, setStatus] = useState('idle') // idle | sending | sent | error
+  const [error, setError] = useState('')
+
+  const submit = async (e) => {
     e.preventDefault()
-    const f = new FormData(e.target)
-    const body = `Name: ${f.get('name')}\nPhone: ${f.get('phone')}\n\n${f.get('comment')}`
-    window.location.href = `mailto:contact@growthgarden.in?subject=${encodeURIComponent('Enquiry from ' + f.get('name'))}&body=${encodeURIComponent(body)}`
-    setSent(true)
+    const form = e.target
+    setStatus('sending')
+    setError('')
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(Object.fromEntries(new FormData(form))),
+      })
+      const result = await res.json().catch(() => ({}))
+      if (!res.ok || !result.ok) throw new Error(result.error || 'Could not send your message. Please try again.')
+      form.reset()
+      setStatus('sent')
+    } catch (err) {
+      setError(err.message)
+      setStatus('error')
+    }
   }
+
   return (
     <Page>
       <h1>It's nice to <span>meet ya</span></h1>
       <p>For general enquiries, please fill out the form to get in touch.</p>
       <form className="form" onSubmit={submit}>
-        <input name="name" placeholder="Name" required />
-        <input name="email" type="email" placeholder="Email *" required />
-        <input name="phone" type="tel" placeholder="Phone number" />
-        <textarea name="comment" rows="5" placeholder="Comment" />
+        <input name="name" placeholder="Name" required maxLength={100} />
+        <input name="email" type="email" placeholder="Email *" required maxLength={200} />
+        <input name="phone" type="tel" placeholder="Phone number" maxLength={30} />
+        <textarea name="comment" rows="5" placeholder="Comment" maxLength={5000} />
+        <input name="website" className="hp" tabIndex={-1} autoComplete="off" aria-hidden="true" />
         <p style={{ fontSize: 14 }}>By submitting this form I accept the <Link to="/privacy-policy" style={{ color: 'var(--purple)' }}>Privacy Policy</Link> of this site.</p>
-        <button className="btn" type="submit">Send</button>
-        {sent && <div className="notice">Opening your email app… (the form has no backend yet, so it uses your mail client.)</div>}
+        <button className="btn" type="submit" disabled={status === 'sending'}>{status === 'sending' ? 'Sending…' : 'Send'}</button>
+        {status === 'sent' && <div className="notice" role="status">Thanks! We've got your message and will get back to you soon.</div>}
+        {status === 'error' && <div className="notice error" role="alert">{error}</div>}
       </form>
     </Page>
   )
